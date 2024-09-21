@@ -14,6 +14,10 @@ import { CoreModule } from '../core/core.module';
 // import { TravelerModule } from '../modules/traveler/traveler.module';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { TokenInterceptor } from '../modules/auth/interceptor/token.interceptor';
+import { SharedModule } from '../shared/shared.module';
+import { AdminDashboardModule } from '../modules/admin-dashboard/admin-dashboard.module';
+import { PjServicesModule } from '../modules/pj-services/pj-services.module';
+import { PropertiesModule } from '../modules/properties/properties.module';
 // import { CartModule } from '../modules/cart/cart.module';
 
 @NgModule({
@@ -25,7 +29,10 @@ import { TokenInterceptor } from '../modules/auth/interceptor/token.interceptor'
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    // PropertiesModule,
+    AdminDashboardModule,
+    SharedModule,
+    PjServicesModule,
+    PropertiesModule,
     BrowserAnimationsModule,
     // CoreModule,
     // ProviderInvoicesModule,

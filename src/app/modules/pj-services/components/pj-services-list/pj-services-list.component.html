@@ -1,0 +1,50 @@
+<app-client-sidebar></app-client-sidebar>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tableau de board</a>
+            </li>
+            <li class="breadcrumb-item active">Sevices</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Liste des Sevices
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div *ngIf="error" class="alert alert-danger">
+                        <p>Une erreur s'est produite lors de la récupération des services. Veuillez réessayer plus tard.</p>
+                    </div>
+                    <table *ngIf="pjServices.length > 0" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                              <th>Titre</th>
+                              <th>Description</th>
+                              <th>Prix</th>
+                              <th>Type</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr *ngFor="let servcie of pjServices">
+                                <td>{{ servcie.title }}</td> <!-- Displaying the title -->
+                                <td>{{ servcie.description }}</td>
+                                <td>{{ servcie.price }}</td>
+                                <td>{{ servcie.pjServiceType }}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

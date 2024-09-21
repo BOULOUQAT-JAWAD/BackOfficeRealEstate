@@ -1,0 +1,119 @@
+<app-client-sidebar></app-client-sidebar>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tableau de board</a>
+            </li>
+            <li class="breadcrumb-item active">Propriétés {{ valid != null && valid == true ? 'validés' : 'non validés' }}</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Liste des Propriétés {{ valid != null && valid == true ? 'validés' : 'non validés' }}
+            </div>
+
+            <!-- <div class="box_general padding_bottom">
+                <div class="header_box version_2">
+                    <h2><i class="fa fa-filter"></i>Filtrer les propriétés : </h2>
+                </div>
+                <form (ngSubmit)="filterProperties()" class="form-inline">
+                    <div class="form-group">
+                        <label for="startDate">Du : </label>
+                        <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate"
+                            class="form-control mx-sm-2">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="endDate">à : </label>
+                        <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate"
+                            class="form-control mx-sm-2">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="status">Statut:</label>
+                        <select id="status" [(ngModel)]="status" name="status" class="form-control mx-sm-2">
+                            <option value="occupied">Occupées</option>
+                            <option value="available">Disponibles</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valid">Valide:</label>
+                        <select id="valid" [(ngModel)]="valid" name="status" class="form-control mx-sm-2">
+                            <option value="true">Oui</option>
+                            <option value="false">Non</option>
+                        </select>
+                    </div>
+            
+                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                    <button type="button" (click)="clearFilter()" class="btn btn-secondary mx-sm-2">Effacer les filtres</button>
+                </form>
+            </div> -->
+            
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div *ngIf="!error && properties.length === 0">
+                        <p>Aucune propriété disponible pour le moment.</p>
+                    </div>
+                    <div *ngIf="error"  class="alert alert-danger">
+                        <p>Une erreur s'est produite lors de la récupération des propriétés. Veuillez réessayer plus tard.</p>
+                    </div>
+                    <table *ngIf="properties.length > 0"class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Titre</th> <!-- New column for title -->
+                                <th>Ville</th>
+                                <th>Pays</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Prix par nuit</th>
+                                <th>Publié</th>
+                                <th>Valide</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Titre</th> <!-- New column for title -->
+                                <th>Ville</th>
+                                <th>Pays</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Prix par nuit</th>
+                                <th>Publié</th>
+                                <th>Valide</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr *ngFor="let property of properties">
+                                <td>
+                                    <img *ngIf="property.propertyImages != null && property.propertyImages.length > 0" [src]="property.propertyImages[0]" alt="Property Image"
+                                        style="width: 100px; height: 70px;">
+                                </td>
+                                <td>{{ property.title }}</td> <!-- Displaying the title -->
+                                <td>{{ property.city }}</td>
+                                <td>{{ property.country }}</td>
+                                <td>{{ property.propertyType }}</td>
+                                <td>{{ property.propertyStatus }}</td>
+                                <td>{{ property.pricePerNight }} €</td>
+                                <td>
+                                    <i [ngClass]="property.publish ? 'fa fa-check-circle approved' : 'fa fa-times-circle cancel'" aria-hidden="true"></i>
+                                </td>
+                                <td>
+                                    <i [ngClass]="property.valid ? 'fa fa-check-circle approved' : 'fa fa-times-circle cancel'" aria-hidden="true"></i>
+                                </td>
+                                <td>
+                                    <app-property-single [propertyData]="property"></app-property-single>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

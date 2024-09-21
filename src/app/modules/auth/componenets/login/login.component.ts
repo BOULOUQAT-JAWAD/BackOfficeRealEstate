@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit{
 
         this.isloading=false
         if (response){
-          this.router.navigate(["/client/dashboard"]).then(
+          this.router.navigate(["/admin/dashboard"]).then(
             ()=>{
               window.location.reload()
             }
