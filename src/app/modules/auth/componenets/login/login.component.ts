@@ -4,6 +4,7 @@ import {LoginRequest} from "../../models/login.request";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import { ToastrService } from 'ngx-toastr';
+import { LoginResponse, Role } from '../../models/login.response';
 
 
 @Component({
@@ -68,21 +69,20 @@ export class LoginComponent implements OnInit{
     }
 
     this.authService.loginService(this.loginReq).subscribe(
-      (response)=>{
+      (response : LoginResponse)=>{
 
         this.isloading=false
-        if (response){
+      
+        if(response.role == Role.ADMIN){
           this.router.navigate(["/admin/dashboard"]).then(
             ()=>{
               window.location.reload()
             }
           )
-        } else {
-          this.router.navigate(["/admin/products"]).then(
-            ()=>{
-              window.location.reload()
-            }
-          )
+        }
+        else {
+        console.log("error")
+        this.toastr.error("You are unauthorized to access this page!")
         }
 
       }

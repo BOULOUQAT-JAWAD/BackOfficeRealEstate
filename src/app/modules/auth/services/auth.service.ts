@@ -46,7 +46,7 @@ export class AuthService {
             console.log("should work")
             this.localStorage.store('token', data.token);
             this.localStorage.store('id', data.userId);
-            return  true;
+            return  data;
           // }
 
         }
