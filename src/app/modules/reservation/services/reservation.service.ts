@@ -69,4 +69,8 @@ export class ReservationService {
     return this.httpClient.post<ReservationResponse>(`${environment.baseUrl}reservations`, request);
 
   }
+
+  public get(reservationId: number): Observable<ReservationResponse> {
+    return this.httpClient.get<ReservationResponse>(`${environment.baseUrl}reservations/`+reservationId);
+  }
 }

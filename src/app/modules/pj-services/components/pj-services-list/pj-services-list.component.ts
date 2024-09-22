@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class PjServicesListComponent implements OnInit, OnChanges {
 
   pjServices: PjService[] = [];
+  searchId!: number;
   loading = false;
   error = false;
 
@@ -61,5 +62,22 @@ export class PjServicesListComponent implements OnInit, OnChanges {
 
   onEdit(pjService: PjService): void {
     this.router.navigate(['/admin/service/edit', pjService.pjServiceId]);
+  }
+  
+  searchById(): void {
+    if (this.searchId) {
+      this.pjServicesService.getPjService(this.searchId).subscribe(
+        (response: PjService) => {
+          this.pjServices = [response];
+          this.error = false;
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+          this.pjServices = [];
+        }
+      );
+    } else {
+      this.fetchAllPjServices();
+    }
   }
 }

@@ -13,6 +13,18 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="box_general padding_bottom">
+                        <div class="header_box version_2">
+                            <h2><i class="fa fa-filter"></i>Filtrer</h2>
+                        </div>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="checkinDate">Rechercher par ID: </label>
+                                <input type="number" id="searchId" [(ngModel)]="searchId" name="checkinDate" placeholder="Entrez l'ID du service">
+                            </div>
+                            <button class="btn btn-primary mx-sm-2" (click)="searchById()">Rechercher</button>
+                        </div>
+                    </div>
                     <div *ngIf="error" class="alert alert-danger">
                         <p>Une erreur s'est produite lors de la récupération des services. Veuillez réessayer plus tard.
                         </p>
@@ -20,6 +32,7 @@
                     <table *ngIf="pjServices.length > 0" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Titre</th>
                                 <th>Description</th>
                                 <th>Prix</th>
@@ -29,6 +42,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>ID</th>
                                 <th>Titre</th>
                                 <th>Description</th>
                                 <th>Prix</th>
@@ -38,6 +52,7 @@
                         </tfoot>
                         <tbody>
                             <tr *ngFor="let servcie of pjServices">
+                                <td>{{ servcie.pjServiceId }}</td>
                                 <td>{{ servcie.title }}</td>
                                 <td>{{ servcie.description }}</td>
                                 <td>{{ servcie.price }}</td>

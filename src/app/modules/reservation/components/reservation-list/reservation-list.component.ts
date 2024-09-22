@@ -3,6 +3,7 @@ import { ReservationResponse } from '../../models/reservation-response';
 import { ReservationStatus } from '../../models/reservation-status';
 import { ReservationService } from '../../services/reservation.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reservation-list',
@@ -16,6 +17,7 @@ export class ReservationListComponent implements OnInit {
   isDashBoardRoute = false;
   isReservationListRoute = false;
   errorMessage: string | null = null;
+  searchId!: number;
 
   reservations: ReservationResponse[] = [];
   checkinDate?: string;
@@ -110,6 +112,22 @@ export class ReservationListComponent implements OnInit {
     this.checkoutDate = undefined;
     if(this.isDashBoardRoute == false){
       this.status = undefined;
+    }
+  }
+
+  searchById(): void {
+    if (this.searchId) {
+      this.reservationService.get(this.searchId).subscribe(
+        (response: ReservationResponse) => {
+          this.reservations = [response];
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+          this.reservations = [];
+        }
+      );
+    } else {
+      this.getReservations();
     }
   }
 }

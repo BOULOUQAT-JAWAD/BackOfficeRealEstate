@@ -21,6 +21,7 @@ export class PropertiesListComponent implements OnInit, OnChanges {
   endDate?: string;
   status?: string;
   valid: boolean = true;
+  searchId!: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private propertyService: PropertyService, private customSnackBar: CustomSnackBarService, private dialog: MatDialog) { }
 
@@ -153,7 +154,7 @@ export class PropertiesListComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         console.log(result);
-  
+
         if (result === true) {
           this.propertyService.validate(property.propertyId).subscribe(response => {
             console.log(response);
@@ -167,5 +168,22 @@ export class PropertiesListComponent implements OnInit, OnChanges {
         }
       }
     });
+  }
+
+  searchById(): void {
+    if (this.searchId) {
+      this.propertyService.getOneProperty(this.searchId).subscribe(
+        (response: PropertyResponse) => {
+          this.properties = [response];
+          this.error = false;
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+          this.properties = [];
+        }
+      );
+    } else {
+      this.fetchAllProperties();
+    }
   }
 }

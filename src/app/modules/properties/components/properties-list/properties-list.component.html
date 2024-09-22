@@ -52,6 +52,18 @@
             
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="box_general padding_bottom">
+                        <div class="header_box version_2">
+                            <h2><i class="fa fa-filter"></i>Filtrer</h2>
+                        </div>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label style="margin-right: 10px;" for="checkinDate">Rechercher par ID: </label>
+                                <input type="number" id="searchId" [(ngModel)]="searchId" name="checkinDate">
+                            </div>
+                            <button class="btn btn-primary mx-sm-2" (click)="searchById()">Rechercher</button>
+                        </div>
+                    </div>
                     <div *ngIf="!error && properties.length === 0">
                         <p>Aucune propriété disponible pour le moment.</p>
                     </div>
