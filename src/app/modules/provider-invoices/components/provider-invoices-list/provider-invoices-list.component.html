@@ -48,25 +48,38 @@
             <div *ngIf="error"  class="alert alert-danger"><p>{{errorMessage}}</p></div>
             <div *ngIf="!loading && !error">
 
-                <table *ngIf="clientPropertiessServices.length > 0" class="table table-bordered">
+                <table *ngIf="providerServices.length > 0" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>Date</th>
                             <th>Statut</th>
                             <th>Prix</th>
+                            <th>Id de propriété</th>
+                            <th>Id de réservation</th>
+                            <th>Id du prestataire</th>
+                            <th>Service pour</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let providerInvoice of clientPropertiessServices">
+                        <tr *ngFor="let providerInvoice of providerServices">
                             <td>{{ providerInvoice.providerInvoiceId }}</td>
                             <td>{{ providerInvoice.date }}</td>
                             <td>{{ providerInvoice.status }}</td>
                             <td>{{ providerInvoice.gain }}€</td>
+                            <td>{{ providerInvoice.propertyId }}</td>
+                            <td>{{ providerInvoice.reservationId }}</td>
+                            <td>{{ providerInvoice.providerId }}</td>
+                            <td>{{ providerInvoice.serviceType }}</td>
+                            <td>
+                                <button mat-icon-button color="primary" (click)="onEdit(providerInvoice)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <div *ngIf="clientPropertiessServices.length === 0">
+                <div *ngIf="providerServices.length === 0">
                     <p class="alert alert-warning">Aucune facture disponible pour le moment.</p>
                 </div>
             </div>

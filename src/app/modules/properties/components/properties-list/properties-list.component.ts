@@ -4,6 +4,8 @@ import { PropertyService } from '../../services/property.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CustomSnackBarService } from 'src/app/shared/custom-snack-bar/custom-snack-bar.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditValidationDialogComponent } from '../edit-validation-dialog/edit-validation-dialog.component';
 
 @Component({
   selector: 'app-properties-list',
@@ -20,7 +22,7 @@ export class PropertiesListComponent implements OnInit, OnChanges {
   status?: string;
   valid: boolean = true;
 
-  constructor(private route: ActivatedRoute, private router: Router, private propertyService: PropertyService, private customSnackBar: CustomSnackBarService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private propertyService: PropertyService, private customSnackBar: CustomSnackBarService, private dialog: MatDialog) { }
 
   // goToAddPropertyForm() {
   //   this.router.navigate(['admin/property/add']);
@@ -63,7 +65,7 @@ export class PropertiesListComponent implements OnInit, OnChanges {
         this.customSnackBar.show('Erreur lors de la récupération des services. Veuillez réessayer plus tard.', 'error', 'red');
       }
     );
-}
+  }
 
   // fetchOccupiedProperties() {
   //   if (!this.startDate || !this.endDate) {
@@ -134,5 +136,36 @@ export class PropertiesListComponent implements OnInit, OnChanges {
 
   retryFetchingProperties() {
     this.fetchAllProperties();
+  }
+
+  onShow(property: PropertyResponse): void {
+    // Implement your edit logic here
+    console.log('Show clicked for:', property);
+    this.router.navigate(['/admin/properties', property.propertyId]);
+  }
+
+  onEdit(property: PropertyResponse): void {
+    const dialogRef = this.dialog.open(EditValidationDialogComponent, {
+      width: '250px',
+      data: { status: property.valid }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        console.log(result);
+  
+        if (result === true) {
+          this.propertyService.validate(property.propertyId).subscribe(response => {
+            console.log(response);
+            window.location.reload();
+          });
+        } else {
+          this.propertyService.inValid(property.propertyId).subscribe(response => {
+            console.log(response);
+            window.location.reload();
+          });
+        }
+      }
+    });
   }
 }

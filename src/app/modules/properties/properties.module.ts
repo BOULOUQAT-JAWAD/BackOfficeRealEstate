@@ -15,6 +15,10 @@ import { AppRoutingModule } from 'src/app/root-module/app-routing.module';
 import { ReservationModule } from '../reservation/reservation.module';
 import { PjServicesModule } from '../pj-services/pj-services.module';
 import { PropertyCardComponent } from './components/property-card/property-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { EditValidationDialogComponent } from './components/edit-validation-dialog/edit-validation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { PropertyCardComponent } from './components/property-card/property-card.
     PropertySingleComponent,
     PropertyDetailsComponent,
     PropertyFormComponent,
-    PropertyCardComponent
+    PropertyCardComponent,
+    EditValidationDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -32,12 +37,14 @@ import { PropertyCardComponent } from './components/property-card/property-card.
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     ReservationModule,
     FormsModule,
     PjServicesModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   exports: [
     PropertiesListComponent,

@@ -7,7 +7,7 @@ import { PjServicesListComponent } from '../modules/pj-services/components/pj-se
 import { PropertiesListComponent } from '../modules/properties/components/properties-list/properties-list.component';
 import { ReservationListComponent } from '../modules/reservation/components/reservation-list/reservation-list.component';
 import { PropertyDetailsComponent } from '../modules/properties/components/property-details/property-details.component';
-import { PropertyFormComponent } from '../modules/properties/components/property-form/property-form.component';
+import { PjServicesSingleComponent } from '../modules/pj-services/components/pj-services-single/pj-services-single.component';
 
 const routes: Routes = [
   {path:"", component:LoginComponent},
@@ -16,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: "dashboard", component: MyDashboardComponent, },
       { path: "services", component: PjServicesListComponent, },
+      { path: 'services/:id', component: PjServicesSingleComponent },
       { path: 'service/add', component: PjServiceFormComponent },
       { path: 'service/edit/:id', component: PjServiceFormComponent },
       { path: "properties", component: PropertiesListComponent, },

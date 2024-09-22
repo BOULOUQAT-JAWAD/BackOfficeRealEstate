@@ -56,7 +56,7 @@ export class ReservationListComponent implements OnInit {
 
     if(this.isDashBoardRoute == false){
       if(this.isReservationListRoute){
-        this.reservationService.getClientReservations(this.checkinDate, this.checkoutDate, this.status)
+        this.reservationService.getAll(this.checkinDate, this.checkoutDate, this.status)
           .subscribe({
             next: (data: ReservationResponse[]) => {
               this.reservations = data;
@@ -83,7 +83,7 @@ export class ReservationListComponent implements OnInit {
       }
     }
     else{
-      this.reservationService.getClientReservationsDateRange(this.checkinDate, this.checkoutDate, this.status)
+      this.reservationService.getAll(this.checkinDate, this.checkoutDate, this.status)
         .subscribe({
           next: (data: ReservationResponse[]) => {
             this.reservations = data;

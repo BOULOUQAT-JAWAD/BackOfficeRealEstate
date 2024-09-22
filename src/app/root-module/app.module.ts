@@ -18,6 +18,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminDashboardModule } from '../modules/admin-dashboard/admin-dashboard.module';
 import { PjServicesModule } from '../modules/pj-services/pj-services.module';
 import { PropertiesModule } from '../modules/properties/properties.module';
+import { ProviderInvoicesModule } from '../modules/provider-invoices/provider-invoices.module';
+import { ReservationModule } from '../modules/reservation/reservation.module';
 // import { CartModule } from '../modules/cart/cart.module';
 
 @NgModule({
@@ -34,8 +36,9 @@ import { PropertiesModule } from '../modules/properties/properties.module';
     PjServicesModule,
     PropertiesModule,
     BrowserAnimationsModule,
+    ProviderInvoicesModule,
+    ReservationModule,
     // CoreModule,
-    // ProviderInvoicesModule,
     // ClientDashboardModule,
     NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot(),

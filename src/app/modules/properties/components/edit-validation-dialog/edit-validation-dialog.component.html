@@ -1,0 +1,14 @@
+<div style="margin-top: 100px; margin-left: 20px; margin-bottom: 100px;">
+    <h5>Modifier la validation</h5>
+    <mat-form-field>
+        <mat-select [(value)]="selectedStatus">
+            <mat-option [value]="true">Valide</mat-option>
+            <mat-option [value]="false">Non valide</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <span>
+        <button mat-button (click)="onCancel()">Annuler</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Valider</button>
+    </span>
+</div>

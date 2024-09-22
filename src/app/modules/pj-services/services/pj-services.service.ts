@@ -31,19 +31,16 @@ export class PjServicesService {
     return this.httpClient.get<PjService[]>(`${environment.baseUrl}pjServices/voyageur`);
   }
 
-  // NOT WORKING
   public getPjService(id: number): Observable<PjService> {     
 
-    return this.httpClient.get<PjService>(`${environment.baseUrl}pjServices/voyageur`);
+    return this.httpClient.get<PjService>(`${environment.baseUrl}pjServices/`+id);
   }
 
-  public saveOrUpdatePjService(pjService: PjService): Observable<PjService> {     
-
-    return this.httpClient.get<PjService>(`${environment.baseUrl}pjServices/voyageur`);
+  public saveOrUpdatePjService(pjService: PjService): Observable<PjService> {
+    return this.httpClient.post<PjService>(`${environment.baseUrl}pjServices`, pjService);
   }
 
   public getAllPjServices(): Observable<PjService[]> {
-
     return this.httpClient.get<PjService[]>(`${environment.baseUrl}pjServices/getAll`);
   }
   

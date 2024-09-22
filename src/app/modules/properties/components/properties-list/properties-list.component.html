@@ -106,7 +106,12 @@
                                     <i [ngClass]="property.valid ? 'fa fa-check-circle approved' : 'fa fa-times-circle cancel'" aria-hidden="true"></i>
                                 </td>
                                 <td>
-                                    <app-property-single [propertyData]="property"></app-property-single>
+                                    <button mat-icon-button color="primary" (click)="onShow(property)">
+                                        <mat-icon>visibility</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onEdit(property)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

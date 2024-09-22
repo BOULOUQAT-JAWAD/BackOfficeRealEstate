@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PjService } from '../../models/pj-service';
 import { PjServicesService } from '../../services/pj-services.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -52,5 +52,14 @@ export class PjServicesListComponent implements OnInit, OnChanges {
 
   retryFetchingProperties() {
     this.fetchAllPjServices();
+  }
+
+  onShow(pjService: PjService): void {
+    console.log('Show clicked for:', pjService);
+    this.router.navigate(['/admin/services', pjService.pjServiceId]);
+  }
+
+  onEdit(pjService: PjService): void {
+    this.router.navigate(['/admin/service/edit', pjService.pjServiceId]);
   }
 }

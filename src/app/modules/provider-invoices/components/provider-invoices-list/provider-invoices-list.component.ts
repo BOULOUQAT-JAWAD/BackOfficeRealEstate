@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CustomSnackBarService } from 'src/app/shared/custom-snack-bar/custom-snack-bar.service';
 import { ProviderInvoiceService } from '../../services/provider-invoice.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { EditStatusDialogComponent } from '../edit-status-dialog/edit-status-dialog.component';
 
 @Component({
   selector: 'app-provider-invoices-list',
@@ -18,7 +20,7 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
   invoiceType?: string;
   isDashBoardRoute = true;
 
-  clientPropertiessServices: ProviderInvoice[] = [];
+  providerServices: ProviderInvoice[] = [];
 
   public ProviderInvoiceStatusEnum = ProviderInvoiceStatus;
 
@@ -26,7 +28,7 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
   error = false;
   errorMessage?: string;
 
-  constructor(private router: Router, private providerInvoiceService: ProviderInvoiceService, private customSnackBar: CustomSnackBarService) { }
+  constructor(private router: Router, private providerInvoiceService: ProviderInvoiceService, private customSnackBar: CustomSnackBarService, private dialog: MatDialog,) { }
 
   // checkIfIncomeRoute(): void {
   //   const url = this.router.url;
@@ -92,9 +94,9 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
     this.error = false;
     this.providerInvoiceService.getPropertiesServicesInvoice(this.startDate, this.endDate, this.status).subscribe(
       (response) => {
-        this.clientPropertiessServices = response;
+        this.providerServices = response;
         this.loading = false;
-        if (this.clientPropertiessServices.length === 0) {
+        if (this.providerServices.length === 0) {
           this.customSnackBar.show('Aucune facture de propriété trouvée.', 'info', 'blue');
           this.errorMessage = 'Aucune facture de propriété trouvée.';
         }
@@ -114,9 +116,9 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
     this.error = false;
     this.providerInvoiceService.getReservationsServicesInvoice(this.startDate, this.endDate, this.status).subscribe(
       (response) => {
-        this.clientPropertiessServices = response;
+        this.providerServices = response;
         this.loading = false;
-        if (this.clientPropertiessServices.length === 0) {
+        if (this.providerServices.length === 0) {
           this.customSnackBar.show('Aucune facture trouvée.', 'info', 'blue');
           this.errorMessage = "Aucune facture trouvée.";
         }
@@ -136,9 +138,9 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
     this.error = false;
     this.providerInvoiceService.getAllServicesInvoice(this.startDate, this.endDate, this.status).subscribe(
       (response) => {
-        this.clientPropertiessServices = response;
+        this.providerServices = response;
         this.loading = false;
-        if (this.clientPropertiessServices.length === 0) {
+        if (this.providerServices.length === 0) {
           this.customSnackBar.show('Aucune facture trouvée.', 'info', 'blue');
           this.errorMessage = "Aucune facture trouvée.";
         }
@@ -154,7 +156,24 @@ export class ProviderInvoicesListComponent implements OnInit, OnChanges {
   }
 
   getTotalCharges(): number {
-    const propertyCharges = this.clientPropertiessServices.reduce((sum, invoice) => sum + invoice.gain, 0);
+    const propertyCharges = this.providerServices.reduce((sum, invoice) => sum + invoice.gain, 0);
     return propertyCharges;
+  }
+
+
+  onEdit(providerInvoice: ProviderInvoice): void {
+    const dialogRef = this.dialog.open(EditStatusDialogComponent, {
+      width: '250px',
+      data: { status: providerInvoice.status }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result && Object.values(ProviderInvoiceStatus).includes(result)) {
+        providerInvoice.status = result;
+        this.providerInvoiceService.update(providerInvoice).subscribe(response => {
+          
+        });
+      }
+    });
   }
 }

@@ -202,7 +202,14 @@ export class PropertyService {
     params = params
       .set('valid', valid);
 
-    return this.httpClient.get<PropertyResponse[]>(`${environment.baseUrl}properties`, { params });
+    return this.httpClient.get<PropertyResponse[]>(`${environment.baseUrl}properties/getAll`, { params });
   }
 
+  public validate(id: number): Observable<PropertyResponse> {
+    return this.httpClient.get<PropertyResponse>(`${environment.baseUrl}properties/${id}/validate`);
+  }
+
+  public inValid(id: number): Observable<PropertyResponse> {
+    return this.httpClient.get<PropertyResponse>(`${environment.baseUrl}properties/${id}/invalid`);
+  }
 }

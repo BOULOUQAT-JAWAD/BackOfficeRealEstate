@@ -14,7 +14,8 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <div *ngIf="error" class="alert alert-danger">
-                        <p>Une erreur s'est produite lors de la récupération des services. Veuillez réessayer plus tard.</p>
+                        <p>Une erreur s'est produite lors de la récupération des services. Veuillez réessayer plus tard.
+                        </p>
                     </div>
                     <table *ngIf="pjServices.length > 0" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
@@ -23,25 +24,33 @@
                                 <th>Description</th>
                                 <th>Prix</th>
                                 <th>Type</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                              <th>Titre</th>
-                              <th>Description</th>
-                              <th>Prix</th>
-                              <th>Type</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                                <th>Type</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                         <tbody>
                             <tr *ngFor="let servcie of pjServices">
-                                <td>{{ servcie.title }}</td> <!-- Displaying the title -->
+                                <td>{{ servcie.title }}</td>
                                 <td>{{ servcie.description }}</td>
                                 <td>{{ servcie.price }}</td>
                                 <td>{{ servcie.pjServiceType }}</td>
+                                <td> <button mat-icon-button color="primary" (click)="onShow(servcie)">
+                                        <mat-icon>visibility</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="onEdit(servcie)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
-                        
                     </table>
                 </div>
             </div>

@@ -1,0 +1,30 @@
+<app-client-sidebar></app-client-sidebar>
+<app-spinner *ngIf="!pjServiceFetched"></app-spinner>
+<div *ngIf="pjServiceFetched" class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tableau de bord</a>
+            </li>
+            <li class="breadcrumb-item active">Détails du service</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box_general padding_bottom">
+                    <div class="property-details">
+
+                        <div class="service-detail">
+                            <p><strong>Identifiant du service :</strong> {{ pjService.pjServiceId }}</p>
+                            <p><strong>Titre :</strong> {{ pjService.title }}</p>
+                            <p><strong>Description :</strong> {{ pjService.description }}</p>
+                            <p><strong>Prix :</strong> {{ pjService.price | currency:'EUR':'symbol' }}</p>
+                            <p><strong>Type de service :</strong> {{ pjService.pjServiceType === 'Voyageur' ? 'Voyageur'
+                                : 'Client' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

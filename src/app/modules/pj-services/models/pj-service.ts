@@ -8,5 +8,5 @@ export interface PjService {
 
 export enum PjServiceType {
     Voyageur = 'Voyageur',
-    Client = 'Client'
+    Client = 'CLIENT'
 }

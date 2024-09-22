@@ -42,7 +42,7 @@ export class ReservationService {
   }
 
 
-  public getClientReservations(checkinDate?: string, checkoutDate?: string, status?: string): Observable<ReservationResponse[]> {
+  public getAll(checkinDate?: string, checkoutDate?: string, status?: string): Observable<ReservationResponse[]> {
     // const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
      
 
@@ -61,29 +61,7 @@ export class ReservationService {
         .set('status', status);
     }
 
-    return this.httpClient.get<ReservationResponse[]>(`${environment.baseUrl}reservations/client`, {   params });
-  }
-
-  public getClientReservationsDateRange(checkinDate?: string, checkoutDate?: string, status?: string): Observable<ReservationResponse[]> {
-    // const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
-     
-
-    let params = new HttpParams();
-
-    if (checkinDate != null) {
-      params = params
-        .set('checkinDate', checkinDate);
-    }
-    if (checkoutDate != null) {
-      params = params
-        .set('checkoutDate', checkoutDate);
-    }
-    if (status != null) {
-      params = params
-        .set('status', status);
-    }
-
-    return this.httpClient.get<ReservationResponse[]>(`${environment.baseUrl}reservations/client/income`, {   params });
+    return this.httpClient.get<ReservationResponse[]>(`${environment.baseUrl}reservations/getAll`, {   params });
   }
 
   public saveOrUpdateReservation(request: ReservationRequest): Observable<ReservationResponse> {

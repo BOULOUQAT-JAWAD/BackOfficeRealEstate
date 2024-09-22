@@ -5,8 +5,9 @@ import { PjServicesSingleComponent } from './components/pj-services-single/pj-se
 import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PjServiceFormComponent } from './components/pj-service-form/pj-service-form.component';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { PjServiceFormComponent } from './components/pj-service-form/pj-service-
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
 ], 
   exports:[
     PjServicesListComponent,
