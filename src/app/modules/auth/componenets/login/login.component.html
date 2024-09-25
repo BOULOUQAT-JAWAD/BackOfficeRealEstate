@@ -1,11 +1,11 @@
-<div id="login_bg">
+<div>
 	
 	<nav id="menu" class="fake_menu"></nav>
 	
 	<div id="login">
 		<aside>
 			<figure>
-				<!-- <a href="index.html"><img src="assets/ assets/img/logo_sticky.svg" width="155" height="36" alt="" class="logo_sticky"></a> -->
+				<a href=""><img src="assets/images/logo.png" width="200" height="200" alt="" class="logo_sticky"></a>
 			</figure>
 			<form [formGroup]="formGroup" (ngSubmit)="loginUser()">
 
@@ -27,7 +27,7 @@
 					</p>
 				</div>
 
-				<div class="clearfix add_bottom_30">
+				<!-- <div class="clearfix add_bottom_30">
 					<div class="checkboxes float-start">
 						<label class="container_check">Remember me
 						  <input type="checkbox">
@@ -35,7 +35,7 @@
 						</label>
 					</div>
 					<div class="float-end mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
-				</div>
+				</div> -->
 
 				<button type="submit" [disabled]="!formGroup.valid" class="btn_1 rounded full-width">
 					<div *ngIf="!isloading">Login</div>

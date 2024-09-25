@@ -17,7 +17,9 @@ export class ClientSidebarComponent implements OnInit {
 
   logout() {
     this.localStorage.clear();
-    this.activeRoute.navigate(["/"])
+    this.activeRoute.navigate(["/"]).then(() => {
+      window.location.reload();
+    });
   }
 
 }
