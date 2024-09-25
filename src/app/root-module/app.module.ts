@@ -18,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminDashboardModule } from '../modules/admin-dashboard/admin-dashboard.module';
 import { PjServicesModule } from '../modules/pj-services/pj-services.module';
 import { PropertiesModule } from '../modules/properties/properties.module';
+import { ClientsModule } from '../modules/clients/clients.module';
+import { ProviderModule } from '../modules/provider/provider.module';
+import { TravelerModule } from '../modules/traveler/traveler.module';
 // import { CartModule } from '../modules/cart/cart.module';
 
 @NgModule({
@@ -33,6 +36,9 @@ import { PropertiesModule } from '../modules/properties/properties.module';
     SharedModule,
     PjServicesModule,
     PropertiesModule,
+    ProviderModule,
+    ClientsModule,
+    TravelerModule,
     BrowserAnimationsModule,
     // CoreModule,
     // ProviderInvoicesModule,
