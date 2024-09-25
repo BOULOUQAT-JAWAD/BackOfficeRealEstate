@@ -20,6 +20,9 @@ import { PjServicesModule } from '../modules/pj-services/pj-services.module';
 import { PropertiesModule } from '../modules/properties/properties.module';
 import { ProviderInvoicesModule } from '../modules/provider-invoices/provider-invoices.module';
 import { ReservationModule } from '../modules/reservation/reservation.module';
+import { ClientsModule } from '../modules/clients/clients.module';
+import { ProviderModule } from '../modules/provider/provider.module';
+import { TravelerModule } from '../modules/traveler/traveler.module';
 // import { CartModule } from '../modules/cart/cart.module';
 
 @NgModule({
@@ -35,6 +38,9 @@ import { ReservationModule } from '../modules/reservation/reservation.module';
     SharedModule,
     PjServicesModule,
     PropertiesModule,
+    ProviderModule,
+    ClientsModule,
+    TravelerModule,
     BrowserAnimationsModule,
     ProviderInvoicesModule,
     ReservationModule,

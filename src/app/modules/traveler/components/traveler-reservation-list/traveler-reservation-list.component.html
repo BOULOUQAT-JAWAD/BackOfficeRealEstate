@@ -1,0 +1,48 @@
+<app-client-sidebar></app-client-sidebar>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+    </ol>
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> List of Reservations
+      </div>
+
+      <div *ngIf="traveler">
+        <h2>Reservations for {{ traveler.firstName }} {{ traveler.lastName }}</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Reservation ID</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of traveler.reservations">
+                <td>{{ reservation.reservationId }}</td>
+                <td>{{ reservation.checkinDate }}</td>
+                <td>{{ reservation.checkoutDate }}</td>
+                <td>{{ reservation.status }}</td>
+                <td>{{ reservation.price }}</td>
+                <td>
+                  <!-- Button to view reservation services -->
+                  <button (click)="viewReservationServices(reservation.reservationId)" class="btn btn-sm btn-info mx-1">
+                    View Reservation Services
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

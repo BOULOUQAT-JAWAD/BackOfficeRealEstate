@@ -1,0 +1,79 @@
+<app-client-sidebar></app-client-sidebar>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tableau de board</a>
+            </li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Liste des Providers
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Provider ID</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Activated</th>
+                        <th>PJ Service</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let provider of providers">
+                        <td>{{ provider.providerId }}</td>
+                        <td>{{ provider.email }}</td>
+                        <td>{{ provider.firstName }}</td>
+                        <td>{{ provider.lastName }}</td>
+                        <td>{{ provider.phoneNumber }}</td>
+                        
+                        <!-- Activation Status & Button -->
+                        <td>
+                          <span><strong>{{ provider.activated ? 'Active' : 'Inactive' }}</strong></span>
+                          <button 
+                            (click)="toggleActivation(provider)" 
+                            class="btn btn-sm mx-1" 
+                            [ngClass]="provider.activated ? 'btn-danger' : 'btn-success'">
+                            {{ provider.activated ? 'Deactivate' : 'Activate' }}
+                          </button>
+                        </td>
+
+                        <!-- PJ Service Info with Hover Action -->
+                        <td style="cursor : pointer">
+                            <div 
+                              class="pj-service-wrapper" 
+                              (mouseenter)="showServiceDetails(provider)" 
+                              (mouseleave)="hideServiceDetails()">
+                              <span>service {{ provider.pjService.title }}</span>
+                              <div class="pj-service-details" *ngIf="hoveredService === provider.pjService">
+                                <p><strong>Title:</strong> {{ provider.pjService.title }}</p>
+                                <p><strong>Description:</strong> {{ provider.pjService.description }}</p>
+                                <p><strong>Price:</strong> {{ provider.pjService.price }}</p>
+                                <p><strong>Type:</strong> {{ provider.pjService.pjServiceType }}</p>
+                              </div>
+                            </div>
+                          </td>
+                          
+              
+                        <!-- Actions -->
+                        <td>
+                          <button (click)="viewProviderInvoices(provider.providerId)" class="btn btn-sm btn-info mx-1">
+                            View Invoices
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+</div>

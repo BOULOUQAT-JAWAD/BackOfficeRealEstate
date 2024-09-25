@@ -1,0 +1,50 @@
+.pj-service-wrapper {
+    position: relative;
+    display: inline-block;
+  
+    .pj-service-details {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      z-index: 1;
+      width: 200px;
+      top: 100%;  /* Show below the element */
+      left: 0;
+    }
+  
+    &:hover .pj-service-details {
+      display: block;
+    }
+  }
+
+  .pj-service-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .pj-service-details {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    z-index: 1000; /* Ensure it's on top of other elements */
+    top: 100%;  /* Position the details below the title */
+    left: 0;
+    width: 250px; /* Set a fixed width for the details box */
+    white-space: normal; /* Ensure text wraps properly */
+  }
+  
+  .pj-service-wrapper:hover .pj-service-details {
+    display: block;
+  }
+
+  /* Check if .table-responsive or any other parent element has overflow: hidden, and adjust if necessary */
+.table-responsive {
+    overflow: visible; /* Allow overflow to be visible */
+  }
+  
+
+  

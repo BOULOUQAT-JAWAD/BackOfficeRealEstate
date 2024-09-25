@@ -32,7 +32,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(modifiedRequest).pipe(
       catchError((error: any) => {
         if (error instanceof HttpErrorResponse && error.status === 403) {
-            this.localStorage.clear();
+          //this.localStorage.clear();
           this.router.navigate(['/login'],{queryParams:{loggedin:false}});
         }
         return throwError(error);
