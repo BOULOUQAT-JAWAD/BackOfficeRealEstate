@@ -39,7 +39,7 @@ export class ClientListComponent implements OnInit {
   }
 
   viewProperties(clientId: number): void {
-    this.router.navigate(['/properties', clientId]); // Adjust route according to your setup
+    this.router.navigate(['/admin/properties', clientId]); // Adjust route according to your setup
   }
 
   viewSubscriptions(clientId: number): void {
